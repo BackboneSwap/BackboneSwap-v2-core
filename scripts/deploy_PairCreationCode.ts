@@ -4,7 +4,7 @@ async function main() {
     const PairCreationCode = await ethers.getContractFactory("PairCreationCode");
     const pair = await PairCreationCode.deploy();
     await pair.deployed();
-    console.log("PairCreationCode deployed to:", pair.address);
+    console.log("PairCreationCode init hash:", await pair.getInitHash());
 }
 
 // We recommend this pattern to be able to use async/await everywhere
