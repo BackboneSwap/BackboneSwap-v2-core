@@ -1,10 +1,10 @@
 import { ethers, run } from "hardhat";
-
+const feeSetter = process.env.FEE_SETTER_ADDRESS as string;
 async function main() {
   const signers = await ethers.getSigners();
 
   const Factory = await ethers.getContractFactory("BackboneswapV2Factory");
-  const factory = await Factory.connect(signers[0]).deploy(signers[0].address);
+  const factory = await Factory.connect(signers[0]).deploy(feeSetter);
   await factory.deployed();
   console.log('BackboneswapV2Factory deployed to: ', factory.address);
 

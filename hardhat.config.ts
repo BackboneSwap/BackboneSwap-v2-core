@@ -10,24 +10,41 @@ const config: HardhatUserConfig = {
     ivarextestnet: {
       url: 'https://testnet.ivarex.com',
       chainId: 16888,
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+      accounts: process.env.PRIVATE_KEY_DEPLOY_FACTORY ? [process.env.PRIVATE_KEY_DEPLOY_FACTORY] : []
     },
     ivarex: {
       url: 'https://mainnet.ivarex.com',
       chainId: 88888,
-      accounts: process.env.PRIVATE_KEY_DEPLOY_IVAREX ? [process.env.PRIVATE_KEY_DEPLOY_IVAREX] : []
+      accounts: process.env.PRIVATE_KEY_DEPLOY_FACTORY ? [process.env.PRIVATE_KEY_DEPLOY_FACTORY] : []
+    },
+    rei: {
+      url: 'https://rei-rpc.moonrhythm.io',
+      chainId: 55555,
+      accounts: process.env.PRIVATE_KEY_DEPLOY_FACTORY ? [process.env.PRIVATE_KEY_DEPLOY_FACTORY] : []
     },
     bitkubtestnet: {
       url: 'https://rpc-testnet.bitkubchain.io',
       chainId: 25925,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
     },
+    velastestnet: {
+      url: 'https://testnet.velas.com/rpc/',
+      chainId: 111,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+    },
+    novatestnet: {
+      url: 'https://testnet.rpc.novanetwork.io:9070',
+      chainId: 107,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+    },
   },
   etherscan: {
     apiKey: {
       ivarex: 'ivarex',
+      rei: 'rei',
       ivarextestnet: ':D',
-      bitkubtestnet: 'bitkubtestnet'
+      bitkubtestnet: 'bitkubtestnet',
+      velastestnet: 'velastestnet',
     },
     customChains: [
       {
@@ -47,6 +64,14 @@ const config: HardhatUserConfig = {
         }
       },
       {
+        network: 'rei',
+        chainId: 55555,
+        urls: {
+          apiURL: 'https://reiscan.com/api',
+          browserURL: 'https://reiscan.com/'
+        }
+      },
+      {
         network: 'bitkubtestnet',
         chainId: 25925,
         urls: {
@@ -54,6 +79,22 @@ const config: HardhatUserConfig = {
           browserURL: 'https://testnet.bkcscan.com/'
         }
       },
+      {
+        network: 'velastestnet',
+        chainId: 111,
+        urls: {
+          apiURL: 'https://explorer.testnet.velas.com/api',
+          browserURL: 'https://evmexplorer.testnet.velas.com'
+        }
+      },
+      // {
+      //   network: 'novatestnet',
+      //   chainId: 107,
+      //   urls: {
+      //     apiURL: 'https://explorer.novanetwork.io/api',
+      //     browserURL: 'https://explorer.novanetwork.io/'
+      //   }
+      // },
     ]
   }
 };
